@@ -15,41 +15,68 @@ def tela():
 
     print('\n   -----------------')
 
+def dadosjogadores():
+  jogador1.append(str(input("Qual o nome do jogador 1: ")))
+  jogador1.append(str(input('Deseja jogar com X ou O: ')))
+  jogador2.append(str(input("Qual o nome do jogador 2: ")))
+  if jogador1[1] == 'X':
+    jogador2.append(str('O'))
+  else: 
+    jogador2.append(str('X'))
+                    
+  os.system("clear")
+  tela()
 
 
+vencedor = ''
 jogo = [
 ['', '', ''],
 ['', '', ''],
 ['', '', ''],
 ]
-jogadores = {'jogador 1': '', 'jogador 2': ''}
-jogador = list()
-cont = 1
-tela()
 
-for jog in jogadores.keys():
-  jogador.append(str(input(f'Qual nome do {jog} : ')))
-  if jog == 'jogador 1':
-    jogador.append(str(input('Deseja jogar com X ou O: ')))
-  else:
-    if jogadores['jogador 1'][1] == 'x':
-      jogador.append('o')
-    else:
-      jogador.append('x')
-  jogadores[jog] = jogador[:]
-  jogador.clear()
+jogador1 = []
+jogador2 = []
+cont = 1
+
+tela()
+dadosjogadores()
 
 while True:
   if cont % 2 != 0:
     print("Vez do jogador 1: ")
     linha = int(input('Linha: '))
     coluna = int(input('Coluna: '))
-    jogo[linha][coluna] = jogadores['jogador 1'][1]
+    jogo[linha][coluna] = jogador1[1]
   else:
     print("Vez do jogador 2: ")
     linha = int(input('Linha: '))
     coluna = int(input('Coluna: '))
-    jogo[linha][coluna] = jogadores['jogador 2'][1]
+    jogo[linha][coluna] = jogador2[1]
   os.system("clear")
   tela()
+  for line in jogo:
+    c = 0 
+    for item in line:
+      if item == 'X':
+        c += 1
+        if c == 3:         
+          if jogador1[1] == 'X':
+            vencedor = 'Jogador 1'
+          else: 
+            vencedor = 'Jogador 2'
+          break
+      elif item == 'O':
+        c += 1
+        if c == 3:
+          if jogador2[1] == 'O':
+            vencedor = 'Jogador 2'
+          else: 
+            vencedor = 'Jogador 1'
+          break
+      if vencedor != '':
+        break
+  if vencedor != '':
+     break
   cont += 1
+print(f'{vencedor} venceu a partida!')
