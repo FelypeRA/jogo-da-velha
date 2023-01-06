@@ -15,15 +15,18 @@ def tela():
 
     print('\n   -----------------')
 
+
+
 jogo = [
 ['', '', ''],
 ['', '', ''],
 ['', '', ''],
 ]
-tela()
-
 jogadores = {'jogador 1': '', 'jogador 2': ''}
 jogador = list()
+cont = 1
+tela()
+
 for jog in jogadores.keys():
   jogador.append(str(input(f'Qual nome do {jog} : ')))
   if jog == 'jogador 1':
@@ -35,12 +38,18 @@ for jog in jogadores.keys():
       jogador.append('x')
   jogadores[jog] = jogador[:]
   jogador.clear()
-print(jogadores)
 
-print('')
 while True:
-  linha = int(input('Linha: '))
-  coluna = int(input('Coluna: '))
-  jogo[linha][coluna] = 'X'
-  os.system("cls")
+  if cont % 2 != 0:
+    print("Vez do jogador 1: ")
+    linha = int(input('Linha: '))
+    coluna = int(input('Coluna: '))
+    jogo[linha][coluna] = jogadores['jogador 1'][1]
+  else:
+    print("Vez do jogador 2: ")
+    linha = int(input('Linha: '))
+    coluna = int(input('Coluna: '))
+    jogo[linha][coluna] = jogadores['jogador 2'][1]
+  os.system("clear")
   tela()
+  cont += 1
