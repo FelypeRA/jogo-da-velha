@@ -64,13 +64,13 @@ while True:
           if jogador1[1] == 'X':
             vencedor = 'Jogador 1'
           else: 
-            vencedor = 'Jogador 2'
+            vencedor = 'Jogador 2  '
           break
       elif item == 'O':
         c += 1
         if c == 3:
           if jogador2[1] == 'O':
-            vencedor = 'Jogador 2'
+            vencedor = 'Jogador 2 TEST'
           else: 
             vencedor = 'Jogador 1'
           break
@@ -78,5 +78,19 @@ while True:
         break
   if vencedor != '':
      break
+  if jogo[0][0] == jogo[1][1] == jogo[2][2] and jogo[0][0] != '':
+    if jogador1[1] == 'X' or jogador1[1] == 'O':
+      vencedor = 'Jogador 1'
+      break
+    else: 
+      vencedor = 'Jogador 2'
+      break
+  if jogo[0][2] == jogo[1][1] == jogo[2][0] and jogo[0][2] != '':
+    if jogador1[1] == 'X' or jogador1[1] == 'O':
+      vencedor = 'Jogador 1'
+      break
+    else: 
+      vencedor = 'Jogador 2'
+      break
   cont += 1
 print(f'{vencedor} venceu a partida!')
